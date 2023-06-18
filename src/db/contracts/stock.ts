@@ -31,4 +31,13 @@ export const stockContract = c.router({
     },
     summary: "Insert a stock",
   },
+  deleteStock: {
+    method: "DELETE",
+    path: "/stocks/:id",
+    body: z.object({}),
+    responses: {
+      200: z.object({}),
+    },
+    summary: "Delete a stock",
+  },
 });

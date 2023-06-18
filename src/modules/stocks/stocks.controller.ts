@@ -1,24 +1,16 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from "@nestjs/common";
+import { Controller, Req } from "@nestjs/common";
+import type { Request } from "express";
 import { TsRestHandler, tsRestHandler } from "@ts-rest/nest";
-
-import { StocksService } from "./stocks.service";
 
 import { appContract } from "@/db/.";
 
+import { StocksService } from "./stocks.service";
 @Controller()
 export class StocksController {
   constructor(private readonly stocksService: StocksService) {}
 
   @TsRestHandler(appContract.stocks)
-  async handler() {
+  async handler(@Req() request: Request) {
     return tsRestHandler(appContract.stocks, {
       getStocks: async () => {
         const stocks = await this.stocksService.getStocks();
@@ -38,6 +30,15 @@ export class StocksController {
         const stock = await this.stocksService.createStock(body);
 
         return { status: 201, body: stock };
+      },
+      deleteStock: async ({ params: { id } }) => {
+        const stock = await this.stocksService.deleteStock(Number(id));
+
+        if (!stock) {
+          return { status: 404, body: null };
+        }
+
+        return { status: 200, body: stock };
       },
     });
   }

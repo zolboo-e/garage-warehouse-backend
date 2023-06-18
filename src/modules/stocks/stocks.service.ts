@@ -24,4 +24,9 @@ export class StocksService {
     // FIXME: all optional?
     return await this.db.insert(stocks).values(stock as any);
   }
+  async deleteStock(id: number) {
+    return (await this.db.delete(stocks).where(eq(stocks.id, id))).find(
+      Boolean,
+    );
+  }
 }

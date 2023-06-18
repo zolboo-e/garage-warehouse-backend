@@ -1,24 +1,63 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "b76c7851-4ca9-49e1-a228-3728d45f3363",
+  "id": "020ac5ba-6f51-40ff-ab45-1f115efbc0f0",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "stocks": {
       "name": "stocks",
       "schema": "",
       "columns": {
+        "hasWarranty": {
+          "name": "hasWarranty",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
         "id": {
           "name": "id",
           "type": "serial",
           "primaryKey": true,
           "notNull": true
         },
+        "inStock": {
+          "name": "inStock",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
         "image": {
           "name": "image",
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "minStock": {
+          "name": "minStock",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "repairPrice": {
+          "name": "repairPrice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "storePrice": {
+          "name": "storePrice",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
         }
       },
       "indexes": {},

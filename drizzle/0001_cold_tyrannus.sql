@@ -1,1 +1,0 @@
-ALTER TABLE "stocks" ADD COLUMN "name" text NOT NULL;
